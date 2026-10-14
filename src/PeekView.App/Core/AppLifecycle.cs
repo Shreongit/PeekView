@@ -1,0 +1,1 @@
+﻿namespace PeekView.App.Core;

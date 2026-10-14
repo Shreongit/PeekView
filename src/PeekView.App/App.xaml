@@ -1,0 +1,26 @@
+﻿<Application x:Class="PeekView.App.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:PeekView.App">
+
+    <Application.Resources>
+        <ResourceDictionary>
+            <ContextMenu x:Key="TrayContextMenu">
+                <MenuItem Header="Open PeekView"
+                          Click="TrayOpen_Click" />
+
+                <Separator />
+
+                <MenuItem x:Name="StartupMenuItem"
+                          Header="Start PeekView with Windows"
+                          IsCheckable="True"
+                          Click="TrayStartup_Click" />
+
+                <Separator />
+
+                <MenuItem Header="Exit PeekView"
+                          Click="TrayExit_Click" />
+            </ContextMenu>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

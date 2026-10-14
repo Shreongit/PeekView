@@ -1,0 +1,150 @@
+﻿<Window x:Class="PeekView.App.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Preview"
+        Width="760"
+        Height="500"
+        MinWidth="400"
+        MinHeight="280"
+        WindowStartupLocation="CenterScreen"
+        Background="White"
+        Foreground="#202020"
+        FontFamily="Segoe UI"
+        Opacity="0.96"
+        PreviewKeyDown="MainWindow_PreviewKeyDown"
+        ShowInTaskbar="False"
+        ResizeMode="CanResize">
+
+    <Grid Background="White">
+        <Grid Margin="18">
+
+            <StackPanel x:Name="EmptyState"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Visibility="Collapsed">
+                <TextBlock Text="No preview available"
+                           FontSize="14"
+                           Foreground="#707070"
+                           HorizontalAlignment="Center"/>
+            </StackPanel>
+
+            <ScrollViewer x:Name="ImageViewport"
+                          Visibility="Collapsed"
+                          Background="White"
+                          HorizontalScrollBarVisibility="Hidden"
+                          VerticalScrollBarVisibility="Hidden"
+                          CanContentScroll="False"
+                          PreviewMouseWheel="ImageViewport_PreviewMouseWheel"
+                          PanningMode="Both"
+                          Focusable="True">
+
+                <StackPanel x:Name="ImageCanvas"
+                            Width="{Binding ActualWidth, ElementName=ImageViewport}"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Top"/>
+            </ScrollViewer>
+
+            <TextBox x:Name="PreviewText"
+                     Visibility="Collapsed"
+                     IsReadOnly="True"
+                     Background="White"
+                     Foreground="#202020"
+                     BorderThickness="0"
+                     FontFamily="Consolas"
+                     FontSize="13"
+                     TextWrapping="NoWrap"
+                     AcceptsReturn="True"
+                     AcceptsTab="True"
+                     VerticalScrollBarVisibility="Hidden"
+                     HorizontalScrollBarVisibility="Hidden"/>
+
+            <Grid x:Name="FolderPreview"
+                  Visibility="Collapsed"
+                  HorizontalAlignment="Center"
+                  VerticalAlignment="Center"
+                  MaxWidth="520">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Row="0"
+                            HorizontalAlignment="Center"
+                            Margin="0,0,0,28">
+                    <TextBlock Text="📁"
+                               FontSize="76"
+                               HorizontalAlignment="Center"/>
+
+                    <TextBlock x:Name="FolderNameText"
+                               FontSize="22"
+                               FontWeight="Medium"
+                               Foreground="#202020"
+                               TextAlignment="Center"
+                               TextWrapping="Wrap"
+                               Margin="0,14,0,0"/>
+                </StackPanel>
+
+                <Border Grid.Row="1"
+                        Background="#F2F2F2"
+                        CornerRadius="10"
+                        Padding="18">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Row="0"
+                                   Text="Size"
+                                   Foreground="#707070"
+                                   Margin="0,0,24,12"/>
+
+                        <TextBlock x:Name="FolderSizeText"
+                                   Grid.Row="0"
+                                   Grid.Column="1"
+                                   Foreground="#202020"
+                                   TextAlignment="Right"
+                                   Margin="0,0,0,12"/>
+
+                        <TextBlock Grid.Row="1"
+                                   Text="Items"
+                                   Foreground="#707070"
+                                   Margin="0,0,24,12"/>
+
+                        <TextBlock x:Name="FolderItemCountText"
+                                   Grid.Row="1"
+                                   Grid.Column="1"
+                                   Foreground="#202020"
+                                   TextAlignment="Right"
+                                   Margin="0,0,0,12"/>
+
+                        <TextBlock Grid.Row="2"
+                                   Text="Modified"
+                                   Foreground="#707070"/>
+
+                        <TextBlock x:Name="FolderModifiedText"
+                                   Grid.Row="2"
+                                   Grid.Column="1"
+                                   Foreground="#202020"
+                                   TextAlignment="Right"
+                                   TextWrapping="Wrap"/>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Grid>
+
+        <TextBlock Text="ESC"
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Bottom"
+                   Foreground="#707070"
+                   FontSize="11"
+                   Margin="0,0,12,8"/>
+    </Grid>
+</Window>
